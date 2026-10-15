@@ -65,13 +65,28 @@ body {
 .album-racs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 16px;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
 }
 
 .album-racs img {
     width: 100%;
-    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
     display: block;
+    border: 8px solid #fff;
+    border-bottom-width: 28px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.album-racs img:nth-child(odd) {
+    transform: rotate(-1.5deg);
+}
+
+.album-racs img:nth-child(even) {
+    transform: rotate(1.2deg);
 }
 
 .kep-gomb {
