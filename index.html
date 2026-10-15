@@ -24,7 +24,7 @@
                 Etiam pulvinar mi facilisis arcu efficitur sollicitudin. Vestibulum feugiat aliquet urna id elementum.
                 In laoreet arcu vel faucibus hendrerit. Maecenas cursus quam nunc, et pharetra nibh feugiat et. Nullam
                 sed blandit erat.</p>
-                <button id="indit-gomb">Indítás</button>
+            <button id="indit-gomb">Indítás</button>
         </div>
         <div id="oldal_1" class="oldal" hidden><button class="kep-gomb"><img src="img/test.jpg"
                     alt="..."></button><button class="kep-gomb"><img src="img/test.jpg" alt="..."></button>
@@ -38,7 +38,57 @@
         <div id="oldal_4" class="oldal" hidden><button class="kep-gomb"><img src="img/test.jpg"
                     alt="..."></button><button class="kep-gomb"><img src="img/test.jpg" alt="..."></button>
         </div>
-        <div id="oldal_5" class="oldal" hidden>Email cím, dátum, adatkezelési hozzájárulás <button id="kuldes-gomb">Küldés</button></div>
+        <div id="oldal_5" class="oldal" hidden>
+            <h2>Hová küldjük az ajánlatot?</h2>
+
+            <label for="email">Email címed</label>
+            <input type="email" id="email" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="email"
+                autocomplete="email">
+
+            <fieldset class="valaszto-csoport">
+                <legend>Mikor lesz a Nagy Nap?</legend>
+                <input type="radio" name="ev" id="ev-2026" value="2026">
+                <label for="ev-2026">2026</label>
+                <input type="radio" name="ev" id="ev-2027" value="2027">
+                <label for="ev-2027">2027</label>
+                <input type="radio" name="ev" id="ev-2028" value="2028">
+                <label for="ev-2028">2028</label>
+            </fieldset>
+
+            <fieldset class="valaszto-csoport">
+                <legend>Melyik hónapban?</legend>
+                <input type="radio" name="honap" id="honap-1" value="1">
+                <label for="honap-1">Január</label>
+                <input type="radio" name="honap" id="honap-2" value="2">
+                <label for="honap-2">Február</label>
+                <input type="radio" name="honap" id="honap-3" value="3">
+                <label for="honap-3">Március</label>
+                <input type="radio" name="honap" id="honap-4" value="4">
+                <label for="honap-4">Április</label>
+                <input type="radio" name="honap" id="honap-5" value="5">
+                <label for="honap-5">Május</label>
+                <input type="radio" name="honap" id="honap-6" value="6">
+                <label for="honap-6">Június</label>
+                <input type="radio" name="honap" id="honap-7" value="7">
+                <label for="honap-7">Július</label>
+                <input type="radio" name="honap" id="honap-8" value="8">
+                <label for="honap-8">Augusztus</label>
+                <input type="radio" name="honap" id="honap-9" value="9">
+                <label for="honap-9">Szeptember</label>
+                <input type="radio" name="honap" id="honap-10" value="10">
+                <label for="honap-10">Október</label>
+                <input type="radio" name="honap" id="honap-11" value="11">
+                <label for="honap-11">November</label>
+                <input type="radio" name="honap" id="honap-12" value="12">
+                <label for="honap-12">December</label>
+            </fieldset>
+
+            <label>
+                <input type="checkbox" id="hozzajarulas">
+                Elfogadom az <a href="#" target="_blank">adatkezelési tájékoztatót</a>.
+            </label>
+            <button id="kuldes-gomb">Küldés</button>
+        </div>
         <div id="oldal_6" class="oldal" hidden>
             <p>Eredmény album oldal</p>
             <div class="album-racs">

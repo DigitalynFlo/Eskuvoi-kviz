@@ -118,6 +118,10 @@ function ujJatek() {
     clearTimeout(varakozas);
     mindenKepGomb.forEach((gomb) => gomb.classList.remove('kivalasztva'));
     korok.forEach((_, i) => betoltKor(i));
+
+    document.querySelectorAll('input[type="radio"]').forEach((r) => { r.checked = false; });
+    document.getElementById('email').value = '';
+    document.getElementById('hozzajarulas').checked = false;
 }
 
 function betoltEredmeny() {
