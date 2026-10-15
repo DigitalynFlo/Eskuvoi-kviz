@@ -86,6 +86,8 @@ const korok = [
     }];
 
 const valaszok = [];
+let zarolva = false;
+let varakozas;
 
 function mutasdOldalt() {
     mindenOldal.forEach((oldal, index) => {
@@ -112,6 +114,9 @@ function betoltKor(korIndex) {
 
 function ujJatek() {
     valaszok.length = 0;
+    zarolva = false;
+    clearTimeout(varakozas);
+    mindenKepGomb.forEach((gomb) => gomb.classList.remove('kivalasztva'));
     korok.forEach((_, i) => betoltKor(i));
 }
 
@@ -129,9 +134,17 @@ inditGomb.addEventListener('click', () => {
 
 mindenKepGomb.forEach((gomb) => {
     gomb.addEventListener('click', () => {
+        if (zarolva) return;
+        zarolva = true;
+        gomb.classList.add('kivalasztva');
         valaszok.push({ tag: gomb.dataset.tag, kep: gomb.querySelector('img').src });
-        aktualisOldal++;
-        mutasdOldalt();
+
+        varakozas = setTimeout(() => {
+            gomb.classList.remove('kivalasztva');
+            aktualisOldal++;
+            mutasdOldalt();
+            zarolva = false;
+        }, 500);
     });
 });
 
