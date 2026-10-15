@@ -42,8 +42,12 @@
             <h2>Hová küldjük az ajánlatot?</h2>
 
             <label for="email">Email címed</label>
-            <input type="email" id="email" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="email"
-                autocomplete="email">
+            <input type="email" id="email" pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}" aria-describedby="email-hiba"
+                autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="email" autocomplete="email">
+            <p id="email-hiba" class="hiba" role="alert" hidden>
+                Hibás email cím! Ellenőrizd, hogy van-e benne @ és pont (pl. nev@gmail.com).
+            </p>
+
 
             <fieldset class="valaszto-csoport">
                 <legend>Mikor lesz a Nagy Nap?</legend>

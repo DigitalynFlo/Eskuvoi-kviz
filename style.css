@@ -153,3 +153,13 @@ body {
     border: 2px solid #343434;
     border-radius: 8px;
 }
+
+.hiba {
+    color: #9B2C2C;
+    font-size: 0.9rem;
+}
+
+#kuldes-gomb:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

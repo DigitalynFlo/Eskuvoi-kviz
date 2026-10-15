@@ -88,6 +88,10 @@ const korok = [
 const valaszok = [];
 let zarolva = false;
 let varakozas;
+const emailMezo = document.getElementById('email');
+const hozzajarulas = document.getElementById('hozzajarulas');
+const emailOldal = document.getElementById('oldal_5');
+const emailHiba = document.getElementById('email-hiba');
 
 function mutasdOldalt() {
     mindenOldal.forEach((oldal, index) => {
@@ -122,6 +126,17 @@ function ujJatek() {
     document.querySelectorAll('input[type="radio"]').forEach((r) => { r.checked = false; });
     document.getElementById('email').value = '';
     document.getElementById('hozzajarulas').checked = false;
+    emailHiba.hidden = true;
+    
+    ellenorizUrlapot();
+}
+
+function ellenorizUrlapot() {
+    const ev = document.querySelector('input[name="ev"]:checked');
+    const honap = document.querySelector('input[name="honap"]:checked');
+    const emailRendben = emailMezo.value.trim() !== '' && emailMezo.checkValidity();
+
+    kuldesGomb.disabled = !(emailRendben && ev && honap && hozzajarulas.checked);
 }
 
 function betoltEredmeny() {
@@ -150,6 +165,19 @@ mindenKepGomb.forEach((gomb) => {
             zarolva = false;
         }, 500);
     });
+});
+
+emailOldal.addEventListener('input', ellenorizUrlapot);
+
+emailMezo.addEventListener('blur', () => {
+    const hibas = emailMezo.value.trim() !== '' && !emailMezo.checkValidity();
+    emailHiba.hidden = !hibas;
+});
+
+emailMezo.addEventListener('input', () => {
+    if (emailMezo.checkValidity()) {
+        emailHiba.hidden = true;
+    }
 });
 
 kuldesGomb.addEventListener('click', () => {
