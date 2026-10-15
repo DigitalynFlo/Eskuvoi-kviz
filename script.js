@@ -127,7 +127,7 @@ function ujJatek() {
     document.getElementById('email').value = '';
     document.getElementById('hozzajarulas').checked = false;
     emailHiba.hidden = true;
-    
+
     ellenorizUrlapot();
 }
 
@@ -194,3 +194,15 @@ kilepesGomb.addEventListener('click', () => {
 
 ujJatek();
 mutasdOldalt();
+
+if (location.search.includes('debug')) {
+    const dbg = document.createElement('div');
+    dbg.style.cssText = 'position:fixed;bottom:4px;right:4px;background:#000;color:#fff;padding:4px 8px;font-size:12px;z-index:9999';
+    document.body.appendChild(dbg);
+
+    const frissitDbg = () => {
+        dbg.textContent = `látható: ${window.innerWidth} × ${window.innerHeight} | keret: ${document.getElementById('keret').offsetHeight}`;
+    };
+    window.addEventListener('resize', frissitDbg);
+    frissitDbg();
+}
