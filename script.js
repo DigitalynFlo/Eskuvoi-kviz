@@ -206,3 +206,7 @@ if (location.search.includes('debug')) {
     window.addEventListener('resize', frissitDbg);
     frissitDbg();
 }
+
+if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: 'IDE_A_PUBLIC_KEY' });
+}
