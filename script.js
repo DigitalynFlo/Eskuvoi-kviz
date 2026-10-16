@@ -7,7 +7,7 @@ const kuldesGomb = document.getElementById('kuldes-gomb');
 const kilepesGomb = document.querySelector('.kilepes');
 let aktualisOldal = 0;
 const korok = [
-        {
+    {
         parok: [
             {
                 a: { kep: 'https://picsum.photos/seed/detail1/600/400', tag: 'detail' },
@@ -45,7 +45,7 @@ const korok = [
                 b: { kep: 'https://picsum.photos/seed/csoport4/600/400', tag: 'csoport' }
             }]
     },
-            {
+    {
         parok: [
             {
                 a: { kep: 'https://picsum.photos/seed/keszulodes1/600/400', tag: 'keszulodes' },
@@ -64,7 +64,7 @@ const korok = [
                 b: { kep: 'https://picsum.photos/seed/buli4/600/400', tag: 'buli' }
             }]
     },
-            {
+    {
         parok: [
             {
                 a: { kep: 'https://picsum.photos/seed/erzelmes1/600/400', tag: 'erzelmes' },
@@ -92,6 +92,9 @@ const emailMezo = document.getElementById('email');
 const hozzajarulas = document.getElementById('hozzajarulas');
 const emailOldal = document.getElementById('oldal_5');
 const emailHiba = document.getElementById('email-hiba');
+const EMAILJS_SERVICE = 'service_wgj7x2v';
+const EMAILJS_TEMPLATE = 'template_kxauvbv';
+let kuldesFolyamatban = false;
 
 function mutasdOldalt() {
     mindenOldal.forEach((oldal, index) => {
@@ -127,6 +130,8 @@ function ujJatek() {
     document.getElementById('email').value = '';
     document.getElementById('hozzajarulas').checked = false;
     emailHiba.hidden = true;
+    kuldesGomb.textContent = 'Küldés';
+    kuldesFolyamatban = false;
 
     ellenorizUrlapot();
 }
@@ -181,9 +186,41 @@ emailMezo.addEventListener('input', () => {
 });
 
 kuldesGomb.addEventListener('click', () => {
-    betoltEredmeny();
-    aktualisOldal++;
-    mutasdOldalt();
+    if (kuldesFolyamatban) return;
+
+    if (typeof emailjs === 'undefined') {
+        kuldesGomb.textContent = 'Hiba – próbáld újra';
+        return;
+    }
+
+    kuldesFolyamatban = true;
+    kuldesGomb.disabled = true;
+    kuldesGomb.textContent = 'Küldés...';
+
+    const email = emailMezo.value.trim();
+    const ev = document.querySelector('input[name="ev"]:checked').value;
+    const honap = document.querySelector('input[name="honap"]:checked').value;
+    const tagek = valaszok.map((v) => v.tag).join(', ');
+
+    emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+        to_email: email,
+        ev: ev,
+        honap: honap,
+        valaszok: tagek
+    }).then(
+        () => {
+            document.getElementById('kuldve-ide').textContent = 'Ide küldtük: ' + email;
+            betoltEredmeny();
+            aktualisOldal++;
+            mutasdOldalt();
+            kuldesFolyamatban = false;
+        },
+        () => {
+            kuldesGomb.textContent = 'Hiba – próbáld újra';
+            kuldesGomb.disabled = false;
+            kuldesFolyamatban = false;
+        }
+    );
 });
 
 kilepesGomb.addEventListener('click', () => {
@@ -208,5 +245,5 @@ if (location.search.includes('debug')) {
 }
 
 if (typeof emailjs !== 'undefined') {
-    emailjs.init({ publicKey: 'PL5zoaQGQuYXigoQK'});
+    emailjs.init({ publicKey: 'PL5zoaQGQuYXigoQK' });
 }
