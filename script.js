@@ -208,5 +208,5 @@ if (location.search.includes('debug')) {
 }
 
 if (typeof emailjs !== 'undefined') {
-    emailjs.init({ publicKey: 'IDE_A_PUBLIC_KEY' });
+    emailjs.init({ publicKey: 'PL5zoaQGQuYXigoQK'});
 }
