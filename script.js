@@ -105,13 +105,14 @@ const szovegek = {
     keszulodes: 'A nagy nap reggele: a készülődés izgalma, a remegő kezek, az utolsó simítások; mi már ekkor veletek vagyunk, hogy semmi ne maradjon ki.',
     buli: 'Az estét is megörökítjük: a nyitótáncot, a közös éneklést és a parketten töltött perceket.'
 };
-
 const emailSorrend = [
     ['erzelmes', 'osszeszedett'],
     ['detail', 'pillanat'],
     ['paros', 'csoport'],
     ['keszulodes', 'buli']
 ];
+let visszaLepesIdozito;
+let albumMegjelenes = 0;
 
 
 function mutasdOldalt() {
@@ -150,6 +151,8 @@ function ujJatek() {
     emailHiba.hidden = true;
     kuldesGomb.textContent = 'Küldés';
     kuldesFolyamatban = false;
+    clearTimeout(visszaLepesIdozito);
+    document.getElementById('kuldve-ide').textContent = '';
 
     ellenorizUrlapot();
 }
@@ -167,6 +170,12 @@ function betoltEredmeny() {
     valaszok.forEach((valasz, i) => {
         kepek[i].src = valasz.kep;
     });
+}
+
+function visszaAzIntrohoz() {
+    aktualisOldal = 0;
+    mutasdOldalt();
+    ujJatek();
 }
 
 inditGomb.addEventListener('click', () => {
@@ -241,6 +250,8 @@ kuldesGomb.addEventListener('click', () => {
             document.getElementById('kuldve-ide').textContent = 'Ide küldtük: ' + email;
             betoltEredmeny();
             aktualisOldal++;
+            albumMegjelenes = Date.now();
+            visszaLepesIdozito = setTimeout(visszaAzIntrohoz, 15000);
             mutasdOldalt();
             kuldesFolyamatban = false;
         },
@@ -252,10 +263,11 @@ kuldesGomb.addEventListener('click', () => {
     );
 });
 
-kilepesGomb.addEventListener('click', () => {
-    aktualisOldal = 0;
-    mutasdOldalt();
-    ujJatek()
+kilepesGomb.addEventListener('click', visszaAzIntrohoz);
+
+document.querySelector('.album-racs').addEventListener('click', () => {
+    if (Date.now() - albumMegjelenes < 1500) return;
+    visszaAzIntrohoz();
 });
 
 ujJatek();
