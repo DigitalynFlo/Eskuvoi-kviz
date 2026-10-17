@@ -248,3 +248,9 @@ body {
     border: none;
     cursor: pointer;
 }
+
+body.dokumentum { padding: 24px; max-width: 720px; margin: 0 auto; line-height: 1.6; }
+.dokumentum h1 { font-size: 1.5rem; margin-bottom: 16px; }
+.dokumentum h2 { font-size: 1.1rem; margin: 24px 0 8px; }
+.dokumentum p, .dokumentum ul { margin-bottom: 12px; overflow-wrap: anywhere; }
+.dokumentum ul { padding-left: 20px; }
