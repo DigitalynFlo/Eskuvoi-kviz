@@ -23,9 +23,9 @@ body {
 #keret {
     width: 100%;
     max-width: 1024px;
-    min-height: calc(100vh - 4rem);
-    min-height: calc(100dvh - 4rem);
-    margin: 2rem auto;
+    min-height: calc(100vh - 2rem);
+    min-height: calc(100dvh - 2rem);
+    margin: 1rem auto;
     padding: 24px;
     position: relative;
     border: #343434 solid 2px;
@@ -93,6 +93,14 @@ body {
     align-items: center;
 }
 
+#oldal_5:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
 #oldal_6:not([hidden]) {
     display: flex;
     flex-direction: column;
@@ -155,14 +163,6 @@ body {
     border-width: 12px 12px 40px 12px;
     transform: rotate(-1.5deg);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-#oldal_5:not([hidden]) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
 }
 
 .valaszto-csoport {
@@ -254,3 +254,4 @@ body.dokumentum { padding: 24px; max-width: 720px; margin: 0 auto; line-height: 
 .dokumentum h2 { font-size: 1.1rem; margin: 24px 0 8px; }
 .dokumentum p, .dokumentum ul { margin-bottom: 12px; overflow-wrap: anywhere; }
 .dokumentum ul { padding-left: 20px; }
+
