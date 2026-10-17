@@ -40,6 +40,8 @@ const emailSorrend = [
 ];
 let visszaLepesIdozito;
 let albumMegjelenes = 0;
+const progressBar = document.getElementById('progress-bar');
+const progressSzegmensek = document.querySelectorAll('#progress-bar span');
 
 
 function mutasdOldalt() {
@@ -50,6 +52,10 @@ function mutasdOldalt() {
             oldal.hidden = true
         }
     });
+    progressSzegmensek.forEach((szegmens, index) => {
+        szegmens.classList.toggle('kesz', index <= aktualisOldal);
+    });
+    progressBar.classList.toggle('rejtett', aktualisOldal === mindenOldal.length - 1);
 };
 
 function betoltKor(korIndex) {

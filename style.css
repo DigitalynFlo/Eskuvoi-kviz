@@ -49,6 +49,28 @@ body {
     background-color: #343434;
 }
 
+#progress-bar {
+    display: flex;
+    gap: 6px;
+    margin: 12px 0;
+}
+
+#progress-bar span {
+    flex: 1;
+    height: 8px;
+    border: 2px solid #343434;
+    border-radius: 999px;
+    transition: background-color 0.3s;
+}
+
+#progress-bar span.kesz {
+    background-color: #343434;
+}
+
+#progress-bar.rejtett {
+    visibility: hidden;
+}
+
 #oldal_0:not([hidden]) {
     display: flex;
     flex-direction: column;
