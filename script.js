@@ -42,6 +42,8 @@ let visszaLepesIdozito;
 let albumMegjelenes = 0;
 const progressBar = document.getElementById('progress-bar');
 const progressSzegmensek = document.querySelectorAll('#progress-bar span');
+const INAKTIV_MS = 90000; // teszthez 5000
+let inaktivitasIdozito;
 
 
 function mutasdOldalt() {
@@ -56,6 +58,7 @@ function mutasdOldalt() {
         szegmens.classList.toggle('kesz', index <= aktualisOldal);
     });
     progressBar.classList.toggle('rejtett', aktualisOldal === mindenOldal.length - 1);
+    inaktivitasUjraindit();
 };
 
 function betoltKor(korIndex) {
@@ -120,6 +123,15 @@ function visszaAzIntrohoz() {
     aktualisOldal = 0;
     mutasdOldalt();
     ujJatek();
+}
+
+function inaktivitasUjraindit() {
+    clearTimeout(inaktivitasIdozito);
+    if (aktualisOldal === 0) return;
+    inaktivitasIdozito = setTimeout(() => {
+        if (kuldesFolyamatban || document.hidden) { inaktivitasUjraindit(); return; }
+        visszaAzIntrohoz();
+    }, INAKTIV_MS);
 }
 
 inditGomb.addEventListener('click', () => {
@@ -213,6 +225,8 @@ document.querySelector('.album-racs').addEventListener('click', () => {
     if (Date.now() - albumMegjelenes < 1500) return;
     visszaAzIntrohoz();
 });
+
+['pointerdown', 'input'].forEach((e) => document.addEventListener(e, inaktivitasUjraindit));
 
 ujJatek();
 mutasdOldalt();
