@@ -95,6 +95,24 @@ const emailHiba = document.getElementById('email-hiba');
 const EMAILJS_SERVICE = 'service_wgj7x2v';
 const EMAILJS_TEMPLATE = 'template_kxauvbv';
 let kuldesFolyamatban = false;
+const szovegek = {
+    erzelmes: 'Szeretnénk megmutatni az érzelmeket: az első pillantást, a szerelmesen csillogó szemeket. Titeket, életetek egyik legboldogabb napján.',
+    osszeszedett: 'Szeretnénk, ha magabiztosan és nyugodtan állnátok a kamera elé. Ha kell, adunk egy-egy ötletet, de a lényeg, hogy a képeken ti látszódjatok.',
+    detail: 'A legszemélyesebb képek a részletekből állnak össze: kézzel készített dekorációk, kedves tárgyak és személyes apróságok.',
+    pillanat: 'A legőszintébb képek azokból a pillanatokból születnek, amikre ti sem számítotok: egy lopott csók, egy összenevetés, egy könnycsepp.',
+    paros: 'A nap tele lesz emberekkel, de gondoskodunk róla, hogy a forgatagban is ti ketten legyetek a történet középpontjában.',
+    csoport: 'Szeretteitek körében tölteni ezt a napot csodálatos érzés. A baráti nevetések és a családi ölelések is megkapják a helyüket az albumotokban.',
+    keszulodes: 'A nagy nap reggele: a készülődés izgalma, a remegő kezek, az utolsó simítások; mi már ekkor veletek vagyunk, hogy semmi ne maradjon ki.',
+    buli: 'Az estét is megörökítjük: a nyitótáncot, a közös éneklést és a parketten töltött perceket.'
+};
+
+const emailSorrend = [
+    ['erzelmes', 'osszeszedett'],
+    ['detail', 'pillanat'],
+    ['paros', 'csoport'],
+    ['keszulodes', 'buli']
+];
+
 
 function mutasdOldalt() {
     mindenOldal.forEach((oldal, index) => {
@@ -199,14 +217,25 @@ kuldesGomb.addEventListener('click', () => {
 
     const email = emailMezo.value.trim();
     const ev = document.querySelector('input[name="ev"]:checked').value;
-    const honap = document.querySelector('input[name="honap"]:checked').value;
-    const tagek = valaszok.map((v) => v.tag).join(', ');
+    const honapSzam = document.querySelector('input[name="honap"]:checked').value;
+    const honapNev = document.querySelector('input[name="honap"]:checked + label')
+        .textContent.toLowerCase();
+    const kesobb = Number(ev) * 100 + Number(honapSzam) >= 202703;
+
+    const blokkok = emailSorrend.map((par) => {
+        const valasz = valaszok.find((v) => par.includes(v.tag));
+        return valasz ? szovegek[valasz.tag] : '';
+    });
 
     emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
         to_email: email,
         ev: ev,
-        honap: honap,
-        valaszok: tagek
+        honap: honapNev,
+        kesobb: kesobb,
+        blokk_1: blokkok[0],
+        blokk_2: blokkok[1],
+        blokk_3: blokkok[2],
+        blokk_4: blokkok[3]
     }).then(
         () => {
             document.getElementById('kuldve-ide').textContent = 'Ide küldtük: ' + email;
