@@ -6,85 +6,6 @@ const mindenKepGomb = document.querySelectorAll('.kep-gomb');
 const kuldesGomb = document.getElementById('kuldes-gomb');
 const kilepesGomb = document.querySelector('.kilepes');
 let aktualisOldal = 0;
-const korok = [
-    {
-        parok: [
-            {
-                a: { kep: 'https://picsum.photos/seed/detail1/600/400', tag: 'detail' },
-                b: { kep: 'https://picsum.photos/seed/pillanat1/600/400', tag: 'pillanat' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/detail2/600/400', tag: 'detail' },
-                b: { kep: 'https://picsum.photos/seed/pillanat2/600/400', tag: 'pillanat' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/detail3/600/400', tag: 'detail' },
-                b: { kep: 'https://picsum.photos/seed/pillanat3/600/400', tag: 'pillanat' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/detail4/600/400', tag: 'detail' },
-                b: { kep: 'https://picsum.photos/seed/pillanat4/600/400', tag: 'pillanat' }
-            }]
-    },
-    {
-        parok: [
-            {
-                a: { kep: 'https://picsum.photos/seed/paros1/600/400', tag: 'paros' },
-                b: { kep: 'https://picsum.photos/seed/csoport1/600/400', tag: 'csoport' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/paros2/600/400', tag: 'paros' },
-                b: { kep: 'https://picsum.photos/seed/csoport2/600/400', tag: 'csoport' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/paros3/600/400', tag: 'paros' },
-                b: { kep: 'https://picsum.photos/seed/csoport3/600/400', tag: 'csoport' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/paros4/600/400', tag: 'paros' },
-                b: { kep: 'https://picsum.photos/seed/csoport4/600/400', tag: 'csoport' }
-            }]
-    },
-    {
-        parok: [
-            {
-                a: { kep: 'https://picsum.photos/seed/keszulodes1/600/400', tag: 'keszulodes' },
-                b: { kep: 'https://picsum.photos/seed/buli1/600/400', tag: 'buli' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/keszulodes2/600/400', tag: 'keszulodes' },
-                b: { kep: 'https://picsum.photos/seed/buli2/600/400', tag: 'buli' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/keszulodes3/600/400', tag: 'keszulodes' },
-                b: { kep: 'https://picsum.photos/seed/buli3/600/400', tag: 'buli' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/keszulodes4/600/400', tag: 'keszulodes' },
-                b: { kep: 'https://picsum.photos/seed/buli4/600/400', tag: 'buli' }
-            }]
-    },
-    {
-        parok: [
-            {
-                a: { kep: 'https://picsum.photos/seed/erzelmes1/600/400', tag: 'erzelmes' },
-                b: { kep: 'https://picsum.photos/seed/osszeszedett1/600/400', tag: 'osszeszedett' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/erzelmes2/600/400', tag: 'erzelmes' },
-                b: { kep: 'https://picsum.photos/seed/osszeszedett2/600/400', tag: 'osszeszedett' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/erzelmes3/600/400', tag: 'erzelmes' },
-                b: { kep: 'https://picsum.photos/seed/osszeszedett3/600/400', tag: 'osszeszedett' }
-            },
-            {
-                a: { kep: 'https://picsum.photos/seed/erzelmes4/600/400', tag: 'erzelmes' },
-                b: { kep: 'https://picsum.photos/seed/osszeszedett4/600/400', tag: 'osszeszedett' }
-            }
-        ]
-    }];
-
 const valaszok = [];
 let zarolva = false;
 let varakozas;
@@ -95,6 +16,12 @@ const emailHiba = document.getElementById('email-hiba');
 const EMAILJS_SERVICE = 'service_wgj7x2v';
 const EMAILJS_TEMPLATE = 'template_kxauvbv';
 let kuldesFolyamatban = false;
+const korok = [
+    kor('detail', 'pillanat', 4),
+    kor('paros', 'csoport', 4),
+    kor('keszulodes', 'buli', 4),
+    kor('erzelmes', 'osszeszedett', 4)
+];
 const szovegek = {
     erzelmes: 'Szeretnénk megmutatni az érzelmeket: az első pillantást, a szerelmesen csillogó szemeket. Titeket, életetek egyik legboldogabb napján.',
     osszeszedett: 'Szeretnénk, ha magabiztosan és nyugodtan állnátok a kamera elé. Ha kell, adunk egy-egy ötletet, de a lényeg, hogy a képeken ti látszódjatok.',
@@ -136,6 +63,17 @@ function betoltKor(korIndex) {
         gombok[i].querySelector('img').src = opcio.kep;
         gombok[i].dataset.tag = opcio.tag;
     });
+}
+
+function kor(tagA, tagB, darab) {
+    const parok = [];
+    for (let i = 1; i <= darab; i++) {
+        parok.push({
+            a: { kep: `img/${tagA}-${i}.jpg`, tag: tagA },
+            b: { kep: `img/${tagB}-${i}.jpg`, tag: tagB }
+        });
+    }
+    return { parok };
 }
 
 function ujJatek() {
