@@ -93,6 +93,13 @@ body {
     align-items: center;
 }
 
+#oldal_6:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .oldal {
     flex: 1;
 }
@@ -107,7 +114,7 @@ body {
     gap: 16px;
     width: 100%;
     max-width: 620px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .album-racs img {

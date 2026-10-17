@@ -191,7 +191,7 @@ kuldesGomb.addEventListener('click', () => {
         blokk_4: blokkok[3]
     }).then(
         () => {
-            document.getElementById('kuldve-ide').textContent = 'Ide küldtük: ' + email;
+            document.getElementById('kuldve-ide').textContent = 'Ide küldtük a nektek szóló ajánlatot: ' + email;
             betoltEredmeny();
             aktualisOldal++;
             albumMegjelenes = Date.now();
