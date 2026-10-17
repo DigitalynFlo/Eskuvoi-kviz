@@ -41,9 +41,17 @@ body {
     background-color: #343434;
 }
 
-#oldal_0,
-#oldal_6 {
+#oldal_0:not([hidden]) {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+}
+
+#oldal_0 p {
+    max-width: 520px;
 }
 
 #oldal_1:not([hidden]),
@@ -175,7 +183,31 @@ body {
     font-size: 0.9rem;
 }
 
-#kuldes-gomb:disabled {
-    opacity: 0.4;
+.gomb {
+    font: inherit;
+    min-height: 48px;
+    padding: 0 32px;
+    background-color: #343434;
+    color: #FFFFF3;
+    border: 2px solid #343434;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.gomb:disabled {
+    opacity: 0.35;
     cursor: not-allowed;
+}
+
+.kilepes {
+    font: inherit;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    width: 50px;
+    height: 50px;
+    background: none;
+    color: #343434;
+    border: none;
+    cursor: pointer;
 }
