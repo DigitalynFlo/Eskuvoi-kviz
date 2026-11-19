@@ -48,8 +48,7 @@ const szolgaltatasAdatok = {
         ajandekCimHaKozeli: '📸Ajándék jegyes fotózás📸',
         ajandekHaKesobb: 'Egész napos esküvői fotózási csomag foglalása esetén egy romantikus, meghitt jegyesfotózást is ajándékba kaptok. Így még időben rákerülhetnek a képek a meghívóitokra!',
         ajandekHaKozeli: 'Egész napos esküvői fotózási csomag foglalása esetén egy romantikus, meghitt jegyesfotózást is ajándékba kaptok, hogy már az esküvőtök előtt közös, gyönyörű emlékekkel gazdagodjatok.',
-        kiegeszites: 'Mozgóképen is megőrizzük a nagy napotokat: videós szolgáltatásunkról kérésre szívesen mesélünk.',
-        blokk: 'IDE JÖN: a fotós szolgáltatás leírása, csomagok, információk.'
+        kiegeszites: 'Mozgóképen is megőrizzük a nagy napotokat: videós szolgáltatásunkról kérésre szívesen mesélünk.'
     },
     'video': {
         nev: 'videós',
@@ -59,8 +58,7 @@ const szolgaltatasAdatok = {
         ajandekCimHaKozeli: '🎥Ajándék jegyes kisfilm🎥',
         ajandekHaKesobb: 'Egész napos esküvői videós csomag foglalása esetén egy romantikus Save the date videót is ajándékba kaptok. Így még időben megoszthatjátok vendégeitekkel, és már jó előre ráhangolhatjátok őket a nagy napra!',
         ajandekHaKozeli: 'Egész napos esküvői videós csomag foglalása esetén egy rövid, romantikus jegyes kisfilmet is ajándékba kaptok, amelyben megmutathatjátok, mennyire várjátok már a nagy napot.',
-        kiegeszites: 'Fotókon is megörökítjük a nagy napotokat: fotós szolgáltatásunkról kérésre szívesen mesélünk.',
-        blokk: 'IDE JÖN: a videós szolgáltatás leírása, csomagok, információk.'
+        kiegeszites: 'Fotókon is megörökítjük a nagy napotokat: fotós szolgáltatásunkról kérésre szívesen mesélünk.'
     },
     'foto-video': {
         nev: 'fotós és videós',
@@ -70,8 +68,7 @@ const szolgaltatasAdatok = {
         ajandekCimHaKozeli: '📸Ajándék jegyes fotózás vagy jegyes kisfilm🎥',
         ajandekHaKesobb: 'Egész napos esküvői fotós és videós csomag foglalása esetén ajándékba kaptok egy romantikus jegyesfotózást vagy egy Save the date videót, rátok bízzuk, melyiket választjátok. Így még időben rákerülhetnek a képek a meghívóitokra, vagy megoszthatjátok a videót vendégeitekkel!',
         ajandekHaKozeli: 'Egész napos esküvői fotós és videós csomag foglalása esetén ajándékba kaptok egy romantikus jegyesfotózást vagy egy rövid jegyes kisfilmet, rátok bízzuk, melyiket választjátok, hogy már az esküvőtök előtt közös, gyönyörű emlékekkel gazdagodjatok.',
-        kiegeszites: '',
-        blokk: 'IDE JÖN: a közös fotó + videó csomag leírása, információk.'
+        kiegeszites: ''
     }
 };
 let visszaLepesIdozito;
@@ -245,8 +242,7 @@ kuldesGomb.addEventListener('click', () => {
         ar_teljes: adat.arTeljes,
         ajandek_cim: kesobb ? adat.ajandekCimHaKesobb : adat.ajandekCimHaKozeli,
         ajandek_szoveg: kesobb ? adat.ajandekHaKesobb : adat.ajandekHaKozeli,
-        kiegeszites: adat.kiegeszites,
-        blokk_szolgaltatas: adat.blokk
+        kiegeszites: adat.kiegeszites
     }).then(
         () => {
             document.getElementById('kuldve-ide').textContent = 'Ide küldtük a nektek szóló ajánlatot: ' + email;
