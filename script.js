@@ -24,11 +24,11 @@ const korok = [
 ];
 const szovegek = {
     erzelmes: 'Szeretnénk megmutatni az érzelmeket: az első pillantást, a szerelmesen csillogó szemeket. Titeket, életetek egyik legboldogabb napján.',
-    osszeszedett: 'Szeretnénk, ha magabiztosan és nyugodtan állnátok a kamera elé. Ha kell, adunk egy-egy ötletet, de a lényeg, hogy a képeken ti látszódjatok.',
-    detail: 'A legszemélyesebb képek a részletekből állnak össze: kézzel készített dekorációk, kedves tárgyak és személyes apróságok.',
-    pillanat: 'A legőszintébb képek azokból a pillanatokból születnek, amikre ti sem számítotok: egy lopott csók, egy összenevetés, egy könnycsepp.',
+    osszeszedett: 'Szeretnénk, ha magabiztosan és nyugodtan állnátok a kamera elé. Ha kell, adunk egy-egy ötletet, de a lényeg, hogy mindvégig önmagatok legyetek.',
+    detail: 'A legszemélyesebb felvételek a részletekből állnak össze: kézzel készített dekorációk, kedves tárgyak és személyes apróságok.',
+    pillanat: 'A legőszintébb felvételek azokból a pillanatokból születnek, amikre ti sem számítotok: egy lopott csók, egy összenevetés, egy könnycsepp.',
     paros: 'A nap tele lesz emberekkel, de gondoskodunk róla, hogy a forgatagban is ti ketten legyetek a történet középpontjában.',
-    csoport: 'Szeretteitek körében tölteni ezt a napot csodálatos érzés. A baráti nevetések és a családi ölelések is megkapják a helyüket az albumotokban.',
+    csoport: 'Szeretteitek körében tölteni ezt a napot csodálatos érzés. A baráti nevetések és a családi ölelések is méltó helyet kapnak a nagy napotok történetében.',
     keszulodes: 'A nagy nap reggele: a készülődés izgalma, a remegő kezek, az utolsó simítások; mi már ekkor veletek vagyunk, hogy semmi ne maradjon ki.',
     buli: 'Az estét is megörökítjük: a nyitótáncot, a közös éneklést és a parketten töltött perceket.'
 };
