@@ -89,8 +89,16 @@ body {
 #oldal_3:not([hidden]),
 #oldal_4:not([hidden]) {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    align-content: center;
+    row-gap: 24px;
+}
+
+.instrukcio {
+    width: 100%;
+    text-align: center;
 }
 
 #oldal_5:not([hidden]) {
