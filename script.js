@@ -38,6 +38,42 @@ const emailSorrend = [
     ['paros', 'csoport'],
     ['keszulodes', 'buli']
 ];
+// "HaKesobb": esküvő 2027 márciusától, "HaKozeli": korábbi esküvő
+const szolgaltatasAdatok = {
+    'foto': {
+        nev: 'fotós',
+        arKedvezmenyes: '250.000 Ft',
+        arTeljes: '300.000 Ft',
+        ajandekCimHaKesobb: '📸Ajándék jegyes fotózás📸',
+        ajandekCimHaKozeli: '📸Ajándék jegyes fotózás📸',
+        ajandekHaKesobb: 'Egész napos esküvői fotózási csomag foglalása esetén egy romantikus, meghitt jegyesfotózást is ajándékba kaptok. Így még időben rákerülhetnek a képek a meghívóitokra!',
+        ajandekHaKozeli: 'Egész napos esküvői fotózási csomag foglalása esetén egy romantikus, meghitt jegyesfotózást is ajándékba kaptok, hogy már az esküvőtök előtt közös, gyönyörű emlékekkel gazdagodjatok.',
+        kiegeszites: 'Mozgóképen is megőrizzük a nagy napotokat: videós szolgáltatásunkról kérésre szívesen mesélünk.',
+        blokk: 'IDE JÖN: a fotós szolgáltatás leírása, csomagok, információk.'
+    },
+    'video': {
+        nev: 'videós',
+        arKedvezmenyes: '250.000 Ft',
+        arTeljes: '300.000 Ft',
+        ajandekCimHaKesobb: '🎥Ajándék Save the date videó🎥',
+        ajandekCimHaKozeli: '🎥Ajándék jegyes kisfilm🎥',
+        ajandekHaKesobb: 'Egész napos esküvői videós csomag foglalása esetén egy romantikus Save the date videót is ajándékba kaptok. Így még időben megoszthatjátok vendégeitekkel, és már jó előre ráhangolhatjátok őket a nagy napra!',
+        ajandekHaKozeli: 'Egész napos esküvői videós csomag foglalása esetén egy rövid, romantikus jegyes kisfilmet is ajándékba kaptok, amelyben megmutathatjátok, mennyire várjátok már a nagy napot.',
+        kiegeszites: 'Fotókon is megörökítjük a nagy napotokat: fotós szolgáltatásunkról kérésre szívesen mesélünk.',
+        blokk: 'IDE JÖN: a videós szolgáltatás leírása, csomagok, információk.'
+    },
+    'foto-video': {
+        nev: 'fotós és videós',
+        arKedvezmenyes: '500.000 Ft',
+        arTeljes: '600.000 Ft',
+        ajandekCimHaKesobb: '📸Ajándék jegyes fotózás vagy Save the date videó🎥',
+        ajandekCimHaKozeli: '📸Ajándék jegyes fotózás vagy jegyes kisfilm🎥',
+        ajandekHaKesobb: 'Egész napos esküvői fotós és videós csomag foglalása esetén ajándékba kaptok egy romantikus jegyesfotózást vagy egy Save the date videót, rátok bízzuk, melyiket választjátok. Így még időben rákerülhetnek a képek a meghívóitokra, vagy megoszthatjátok a videót vendégeitekkel!',
+        ajandekHaKozeli: 'Egész napos esküvői fotós és videós csomag foglalása esetén ajándékba kaptok egy romantikus jegyesfotózást vagy egy rövid jegyes kisfilmet, rátok bízzuk, melyiket választjátok, hogy már az esküvőtök előtt közös, gyönyörű emlékekkel gazdagodjatok.',
+        kiegeszites: '',
+        blokk: 'IDE JÖN: a közös fotó + videó csomag leírása, információk.'
+    }
+};
 let visszaLepesIdozito;
 let albumMegjelenes = 0;
 const progressBar = document.getElementById('progress-bar');
@@ -187,6 +223,8 @@ kuldesGomb.addEventListener('click', () => {
     const honapNev = document.querySelector('input[name="honap"]:checked + label')
         .textContent.toLowerCase();
     const kesobb = Number(ev) * 100 + Number(honapSzam) >= 202703;
+    const szolgaltatas = document.querySelector('input[name="szolgaltatas"]:checked').value;
+    const adat = szolgaltatasAdatok[szolgaltatas];
 
     const blokkok = emailSorrend.map((par) => {
         const valasz = valaszok.find((v) => par.includes(v.tag));
@@ -201,7 +239,14 @@ kuldesGomb.addEventListener('click', () => {
         blokk_1: blokkok[0],
         blokk_2: blokkok[1],
         blokk_3: blokkok[2],
-        blokk_4: blokkok[3]
+        blokk_4: blokkok[3],
+        szolgaltatas: adat.nev,
+        ar_kedvezmenyes: adat.arKedvezmenyes,
+        ar_teljes: adat.arTeljes,
+        ajandek_cim: kesobb ? adat.ajandekCimHaKesobb : adat.ajandekCimHaKozeli,
+        ajandek_szoveg: kesobb ? adat.ajandekHaKesobb : adat.ajandekHaKozeli,
+        kiegeszites: adat.kiegeszites,
+        blokk_szolgaltatas: adat.blokk
     }).then(
         () => {
             document.getElementById('kuldve-ide').textContent = 'Ide küldtük a nektek szóló ajánlatot: ' + email;
