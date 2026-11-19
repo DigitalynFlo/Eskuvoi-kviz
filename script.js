@@ -107,9 +107,10 @@ function ujJatek() {
 function ellenorizUrlapot() {
     const ev = document.querySelector('input[name="ev"]:checked');
     const honap = document.querySelector('input[name="honap"]:checked');
+    const szolgaltatas = document.querySelector('input[name="szolgaltatas"]:checked');
     const emailRendben = emailMezo.value.trim() !== '' && emailMezo.checkValidity();
 
-    kuldesGomb.disabled = !(emailRendben && ev && honap && hozzajarulas.checked);
+    kuldesGomb.disabled = !(emailRendben && ev && honap && szolgaltatas && hozzajarulas.checked);
 }
 
 function betoltEredmeny() {
