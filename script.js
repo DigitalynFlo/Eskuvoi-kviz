@@ -38,7 +38,7 @@ const emailSorrend = [
     ['paros', 'csoport'],
     ['keszulodes', 'buli']
 ];
-// "HaKesobb": esküvő 2027 márciusától, "HaKozeli": korábbi esküvő
+// "HaKesobb": esküvő több mint 4 hónap múlva, "HaKozeli": 4 hónapon belüli esküvő
 const szolgaltatasAdatok = {
     'foto': {
         nev: 'fotós',
@@ -252,7 +252,8 @@ kuldesGomb.addEventListener('click', () => {
     const honapSzam = document.querySelector('input[name="honap"]:checked').value;
     const honapNev = document.querySelector('input[name="honap"]:checked + label')
         .textContent.toLowerCase();
-    const kesobb = Number(ev) * 100 + Number(honapSzam) >= 202703;
+    const most = new Date();
+    const kesobb = Number(ev) * 12 + Number(honapSzam) > most.getFullYear() * 12 + most.getMonth() + 1 + 4;
     const szolgaltatas = document.querySelector('input[name="szolgaltatas"]:checked').value;
     const adat = szolgaltatasAdatok[szolgaltatas];
 
@@ -310,8 +311,8 @@ document.querySelector('.album-racs').addEventListener('click', () => {
 
 ['pointerdown', 'input'].forEach((e) => document.addEventListener(e, inaktivitasUjraindit));
 
-ujJatek();
 beallitEveket();
+ujJatek();
 mutasdOldalt();
 
 if (location.search.includes('debug')) {
