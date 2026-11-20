@@ -77,6 +77,18 @@ const progressBar = document.getElementById('progress-bar');
 const progressSzegmensek = document.querySelectorAll('#progress-bar span');
 const INAKTIV_MS = 90000; // teszthez 5000
 let inaktivitasIdozito;
+const KIALLITAS = 'Őszi Menyegző Kiállítás Szeged'; // minden kiállítás előtt át kell írni
+const NAPLO_URL = 'https://script.google.com/macros/s/AKfycbwxuFzNzUa4kQB4C0YLD1FPShDVAyzyT2OGALtTYPQ06bIo3sF7PyuyXuom0UAcS2tKfw/exec'; // a Google Apps Script webapp URL-je
+
+function naploz(sor) {
+    if (!NAPLO_URL) return;
+    fetch(NAPLO_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(sor)
+    }).catch(() => {});
+}
 
 
 function mutasdOldalt() {
@@ -245,6 +257,13 @@ kuldesGomb.addEventListener('click', () => {
         kiegeszites: adat.kiegeszites
     }).then(
         () => {
+            naploz({
+                kiallitas: KIALLITAS,
+                ev: ev,
+                honap: honapSzam,
+                szolgaltatas: szolgaltatas,
+                korok: valaszok.map((v) => v.tag)
+            });
             document.getElementById('kuldve-ide').textContent = 'Ide küldtük a nektek szóló ajánlatot: ' + email;
             betoltEredmeny();
             aktualisOldal++;
