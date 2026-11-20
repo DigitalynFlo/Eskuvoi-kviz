@@ -149,7 +149,28 @@ function ujJatek() {
     ellenorizUrlapot();
 }
 
+function beallitEveket() {
+    const aktEv = new Date().getFullYear();
+    document.querySelectorAll('input[name="ev"]').forEach((r, i) => {
+        r.value = aktEv + i;
+        document.querySelector(`label[for="${r.id}"]`).textContent = aktEv + i;
+    });
+}
+
+function frissitHonapokat() {
+    const most = new Date();
+    const aktEv = most.getFullYear();
+    const aktHonap = most.getMonth() + 1;
+    const ev = document.querySelector('input[name="ev"]:checked');
+
+    document.querySelectorAll('input[name="honap"]').forEach((r) => {
+        r.disabled = ev !== null && Number(ev.value) === aktEv && Number(r.value) < aktHonap;
+        if (r.disabled) r.checked = false;
+    });
+}
+
 function ellenorizUrlapot() {
+    frissitHonapokat();
     const ev = document.querySelector('input[name="ev"]:checked');
     const honap = document.querySelector('input[name="honap"]:checked');
     const szolgaltatas = document.querySelector('input[name="szolgaltatas"]:checked');
@@ -290,6 +311,7 @@ document.querySelector('.album-racs').addEventListener('click', () => {
 ['pointerdown', 'input'].forEach((e) => document.addEventListener(e, inaktivitasUjraindit));
 
 ujJatek();
+beallitEveket();
 mutasdOldalt();
 
 if (location.search.includes('debug')) {

@@ -208,6 +208,11 @@ body {
     color: #FFFFF3;
 }
 
+.valaszto-csoport input:disabled + label {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
 .valaszto-csoport input:focus-visible + label {
     outline: 3px solid #343434;
     outline-offset: 2px;
